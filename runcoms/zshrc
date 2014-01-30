@@ -36,3 +36,9 @@ source $(which virtualenvwrapper.sh)
 
 # export PYTHONSTARTUP=~/.pythonrc.py
 alias python='PYTHONSTARTUP=~/.pythonrc.py python'
+
+# Make Ctrl-Left and Ctrl-Right go backward/forward by words
+# Sorin won't accept PR for prezto
+# See: https://github.com/sorin-ionescu/prezto/issues/278
+bindkey "^[[1;5D" emacs-backward-word
+bindkey "^[[1;5C" emacs-forward-word
