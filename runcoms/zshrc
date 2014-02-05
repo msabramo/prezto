@@ -37,6 +37,9 @@ source $(which virtualenvwrapper.sh)
 # export PYTHONSTARTUP=~/.pythonrc.py
 alias python='PYTHONSTARTUP=~/.pythonrc.py python'
 
+alias rerc='source ~/.zshrc'
+alias sba='source bin/activate'
+
 # Make Ctrl-Left and Ctrl-Right go backward/forward by words
 # Sorin won't accept PR for prezto
 # See: https://github.com/sorin-ionescu/prezto/issues/278
