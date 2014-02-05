@@ -25,7 +25,7 @@ export LS_COLORS="di=34;01:ln=36;01:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # PATH
-export PATH=~/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=~/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.3/bin:/Library/Frameworks/Python.framework/Versions/3.2/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # Python pip
 export PIP_DOWNLOAD_CACHE=~/.pip/download-cache
@@ -42,3 +42,22 @@ alias python='PYTHONSTARTUP=~/.pythonrc.py python'
 # See: https://github.com/sorin-ionescu/prezto/issues/278
 bindkey "^[[1;5D" emacs-backward-word
 bindkey "^[[1;5C" emacs-forward-word
+
+# Make up and down arrows only use local history
+# (don't share history from other zsh sessions - e.g.: tabs)
+# from http://superuser.com/questions/446594/separate-up-arrow-lookback-for-local-and-global-zsh-history
+bindkey "${key_info[Up]}" up-line-or-local-history
+bindkey "${key_info[Down]}" down-line-or-local-history
+
+up-line-or-local-history() {
+    zle set-local-history 1
+    zle up-line-or-history
+    zle set-local-history 0
+}
+zle -N up-line-or-local-history
+down-line-or-local-history() {
+    zle set-local-history 1
+    zle down-line-or-history
+    zle set-local-history 0
+}
+zle -N down-line-or-local-history
