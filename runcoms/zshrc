@@ -37,6 +37,9 @@ source $(which virtualenvwrapper.sh)
 # export PYTHONSTARTUP=~/.pythonrc.py
 alias python='PYTHONSTARTUP=~/.pythonrc.py python'
 
+alias mkve='mkvirtualenv'
+alias psd='pserve development.ini'
+alias psdl='pserve development_local.ini'
 alias rerc='source ~/.zshrc'
 alias sba='source bin/activate'
 
