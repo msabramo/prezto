@@ -34,6 +34,11 @@ export PIP_DOWNLOAD_CACHE=~/.pip/download-cache
 export WORKON_HOME=~/python/virtualenvs
 source $(which virtualenvwrapper.sh)
 
+# If a virtualenv activated, reactivate to get its path mods back
+if [ ! -z $VIRTUAL_ENV ]; then
+  source $VIRTUAL_ENV/bin/activate
+fi
+
 # export PYTHONSTARTUP=~/.pythonrc.py
 alias python='PYTHONSTARTUP=~/.pythonrc.py python'
 
