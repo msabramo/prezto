@@ -42,9 +42,11 @@ fi
 # export PYTHONSTARTUP=~/.pythonrc.py
 alias python='PYTHONSTARTUP=~/.pythonrc.py python'
 
+alias ipy='ipython'
 alias mkve='mkvirtualenv'
 alias psd='pserve development.ini'
 alias psdl='pserve development_local.ini'
+alias py='python'
 alias rerc='source ~/.zshrc'
 alias sba='source bin/activate'
 
