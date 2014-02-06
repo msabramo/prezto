@@ -42,6 +42,7 @@ fi
 # export PYTHONSTARTUP=~/.pythonrc.py
 alias python='PYTHONSTARTUP=~/.pythonrc.py python'
 
+alias gb='git branch -v'
 alias ipy='ipython'
 alias mkve='mkvirtualenv'
 alias psd='pserve development.ini'
