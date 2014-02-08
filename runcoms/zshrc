@@ -48,6 +48,7 @@ alias python='PYTHONSTARTUP=~/.pythonrc.py python'
 
 alias gb='git branch -v'
 alias gph='git push origin HEAD'
+alias grls='git remote -v'
 alias gwho='git shortlog -n -s --no-merges'
 alias gws='git status --short --branch'
 alias ipy='ipython'
