@@ -54,7 +54,12 @@ alias gws='git status --short --branch'
 alias ipy='ipython'
 alias mkve='mkvirtualenv'
 alias pi='pip install'
-alias pu='pip uninstall --yes'
+pu() {
+  pip uninstall --verbose --yes "$@"
+  if pip freeze | grep "$@"; then
+    pip uninstall --verbose --yes "$@"
+  fi
+}
 alias psd='pserve development.ini'
 alias psdl='pserve development_local.ini'
 alias py='python'
