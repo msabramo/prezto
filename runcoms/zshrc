@@ -63,6 +63,9 @@ pu() {
 alias psd='pserve development.ini'
 alias psdl='pserve development_local.ini'
 alias py='python'
+pys() {
+  python -c 'import setuptools; execfile("setup.py")' "$@"
+}
 alias rerc='source ~/.zshrc'
 alias sba='source bin/activate'
 
