@@ -33,6 +33,9 @@ export CDPATH=~/dev/surveymonkey:~/dev/git-repos:~/dev/hg-repos
 # Python pip
 export PIP_DOWNLOAD_CACHE=~/.pip/download-cache
 
+# Make hub use HTTP instead of HTTPS
+export HUB_TEST_HOST=code.corp.surveymonkey.com:80
+
 # Python virtualenvwrapper
 export WORKON_HOME=~/python/virtualenvs
 source $(which virtualenvwrapper.sh)
