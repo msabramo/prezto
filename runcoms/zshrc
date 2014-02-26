@@ -103,3 +103,5 @@ zle -N down-line-or-local-history
 
 # Don't exit shell when hit Ctrl-D
 setopt ignoreeof
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
