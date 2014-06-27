@@ -38,7 +38,9 @@ export HUB_TEST_HOST=code.corp.surveymonkey.com:80
 
 # Python virtualenvwrapper
 export WORKON_HOME=~/python/virtualenvs
-source $(which virtualenvwrapper.sh)
+if which virtualenvwrapper.sh > /dev/null; then
+  source $(which virtualenvwrapper.sh)
+fi
 
 # If a virtualenv activated, reactivate to get its path mods back
 if [ ! -z $VIRTUAL_ENV ]; then
