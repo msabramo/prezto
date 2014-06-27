@@ -50,7 +50,7 @@ if [ -f ${HOME}/devpi/bin/devpi-ctl ]; then
 fi
 
 # export PYTHONSTARTUP=~/.pythonrc.py
-alias python='PYTHONSTARTUP=~/.pythonrc.py python'
+# alias python='PYTHONSTARTUP=~/.pythonrc.py python'
 
 alias gb='git branch -v'
 alias gph='git push origin HEAD'
