@@ -30,6 +30,11 @@ export PATH=~/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library
 # CDPATH
 export CDPATH=.:~/dev/surveymonkey:~/dev/git-repos:~/dev/hg-repos
 
+# OpenStack
+if [ -f ~/.web-openrc.sh ]; then
+  . ~/.web-openrc.sh
+fi
+
 # Python pip
 export PIP_DOWNLOAD_CACHE=~/.pip/download-cache
 
