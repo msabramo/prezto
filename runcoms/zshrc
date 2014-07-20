@@ -116,3 +116,8 @@ zle -N down-line-or-local-history
 setopt ignoreeof
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# Set up direnv (http://direnv.net/)
+if direnv > /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
