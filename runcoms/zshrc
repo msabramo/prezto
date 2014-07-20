@@ -11,6 +11,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+if docker-osx > /dev/null; then
+    eval `docker-osx env`
+fi
 
 # BSD ls colors
 export LSCOLORS='ExGxCxDxCxegedabagacad'
