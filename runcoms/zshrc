@@ -118,6 +118,9 @@ zle -N down-line-or-local-history
 # Don't exit shell when hit Ctrl-D
 setopt ignoreeof
 
+# Clobber existing files when redirecting output to a file
+setopt CLOBBER
+
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # Set up direnv (http://direnv.net/)
