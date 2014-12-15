@@ -42,6 +42,11 @@ if [ -f ~/.projectB-openrc.sh ]; then
   . ~/.projectB-openrc.sh
 fi
 
+if [ -f ~/bin/projectB-openrc.sh ]; then
+  . ~/bin/projectB-openrc.sh
+fi
+###
+
 ### Toggle prompt
 function current_prompt {
   prompt -c | awk 'NR == 2 { print $1 }'
