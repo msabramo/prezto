@@ -37,10 +37,23 @@ export CDPATH=.:~/dev/surveymonkey:~/dev/git-repos:~/dev/hg-repos
 export GOPATH=~/go
 export PATH=$GOPATH/bin:$PATH
 
-# OpenStack
-if [ -f ~/.web-openrc.sh ]; then
-  . ~/.web-openrc.sh
+### OpenStack
+if [ -f ~/.projectB-openrc.sh ]; then
+  . ~/.projectB-openrc.sh
 fi
+
+### Toggle prompt
+function current_prompt {
+  prompt -c | awk 'NR == 2 { print $1 }'
+}
+function prt {
+  if [[ "$(current_prompt)" == "paradox" ]]; then
+    prompt redhat
+  elif [[ "$(current_prompt)" == "redhat" ]]; then
+    prompt paradox
+  fi
+}
+###
 
 # Python pip
 export PIP_DOWNLOAD_CACHE=~/.pip/download-cache
