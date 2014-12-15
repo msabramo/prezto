@@ -15,7 +15,7 @@ prompt_segment() {
   if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
     echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
   else
-    echo -n "%{$bg%}%{$fg%} "
+    echo -n "%{$bg%}%{$fg%}"
   fi
   CURRENT_BG=$1
   [[ -n $3 ]] && print -Pn $3
@@ -122,7 +122,7 @@ function prompt_paradox_setup {
   # Define prompts.
   PROMPT='
 %{%f%b%k%}$(build_prompt)
- ${editor_info[keymap]} '
+${editor_info[keymap]} '
   # RPROMPT='[%D{%L:%M:%S %p}]'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
