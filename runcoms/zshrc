@@ -33,6 +33,10 @@ export PATH=~/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library
 # CDPATH
 export CDPATH=.:~/dev/surveymonkey:~/dev/git-repos:~/dev/hg-repos
 
+# GoLang
+export GOPATH=~/go
+export PATH=$GOPATH/bin:$PATH
+
 # OpenStack
 if [ -f ~/.web-openrc.sh ]; then
   . ~/.web-openrc.sh
