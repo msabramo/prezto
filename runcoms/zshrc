@@ -61,7 +61,9 @@ function prt {
 ###
 
 # Python pip
-export PIP_DOWNLOAD_CACHE=~/.pip/download-cache
+# DEPRECATION: --download-cache has been deprecated and will be removed in the
+# future. Pip now automatically uses and configures its cache.
+# export PIP_DOWNLOAD_CACHE=~/.pip/download-cache
 
 # Make hub use HTTP instead of HTTPS
 export HUB_TEST_HOST=code.corp.surveymonkey.com:80
