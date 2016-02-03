@@ -10,10 +10,53 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# export SMSTACK_NO_OPENSTACK_INVENTORY=1
+
+# Hashicorp Vault
+export VAULT_ADDR=https://consul01.corp.surveymonkey.com:8200
+
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
+
+export ANSIBLE_NOCOWS=1
+
+export CHEESEPRISM=https://packages.corp.surveymonkey.com/index
+export DEVPI=https://devpi.corp.surveymonkey.com/wheels/osx
+
+alias avd='ansible-vault decrypt --vault-password-file=~/.vaultpw'
+alias ave='ansible-vault encrypt --vault-password-file=~/.vaultpw'
+alias aved='ansible-vault edit --vault-password-file=~/.vaultpw'
+alias avv='ansible-vault view --vault-password-file=~/.vaultpw'
+
+alias os-dev='source ~/openstack_rc_files/DEV-openrc.sh'
+alias os-monkeytest='source ~/openstack_rc_files/MonkeyTest-openrc.sh'
+
+ldap-lookup() {
+  ldapsearch -H ldap://dc1-mp.corp.surveymonkey.com -x -b "OU=SurveyMonkey,DC=corp,DC=surveymonkey,DC=com" -D "CORP\marca" -W sAMAccountName=$1
+}
+
+supernova-list() {
+  os-dev
+  nova list | awk '{ printf "%-12s %s\n", "DEV", $0 }'; echo
+  os-monkeytest
+  nova list | awk '{ printf "%-12s %s\n", "MonkeyTest", $0 }'; echo
+}
+
 # Customize to your needs...
-if docker-osx > /dev/null; then
-    eval `docker-osx env`
-fi
+# if docker-osx > /dev/null; then
+#     eval `docker-osx env`
+# fi
+
+source '/opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+source '/opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+
+# if boot2docker version > /dev/null; then
+#   $(boot2docker shellinit 2> /dev/null)
+# fi
+
+# eval $(docker-machine env boot2docker)
+
+# alias ssh=sshrc
+alias os-tenant='env | egrep --color=never "OS_(AUTH_URL|TENANT|USERNAME)"'
 
 # BSD ls colors
 export LSCOLORS='ExGxCxDxCxegedabagacad'
@@ -31,20 +74,24 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # export PATH=~/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.3/bin:/Library/Frameworks/Python.framework/Versions/3.2/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin
 export PATH=~/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/2.6/bin:/Library/Frameworks/Python.framework/Versions/2.5/bin:/Library/Frameworks/Python.framework/Versions/2.4/bin:/Library/Frameworks/Python.framework/Versions/3.4/bin:/Library/Frameworks/Python.framework/Versions/3.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin
 # CDPATH
-export CDPATH=.:~/dev/surveymonkey:~/dev/git-repos:~/dev/hg-repos
+CDPATH=.:~/dev/surveymonkey:~/dev/git-repos:~/dev/hg-repos
 
 # GoLang
 export GOPATH=~/go
 export PATH=$GOPATH/bin:$PATH
 
 ### OpenStack
-if [ -f ~/.projectB-openrc.sh ]; then
-  . ~/.projectB-openrc.sh
+if [ -f ~/bin/DEV-openrc.sh ]; then
+  . ~/bin/DEV-openrc.sh
 fi
 
-if [ -f ~/bin/projectB-openrc.sh ]; then
-  . ~/bin/projectB-openrc.sh
+if [ -f ~/openstack_rc_files/DEV-openrc.sh ]; then
+  . ~/openstack_rc_files/DEV-openrc.sh
 fi
+
+# if [ -f ~/bin/MonkeyTest-openrc.sh ]; then
+#   . ~/bin/MonkeyTest-openrc.sh
+# fi
 ###
 
 ### Toggle prompt
@@ -59,6 +106,16 @@ function prt {
   fi
 }
 ###
+
+title() { echo -en "\033]0;${*}\007"; }
+
+# set tab title to cwd
+precmd () {
+  tab_label=$(basename ${PWD/${HOME}/\~}) # use 'relative' path
+  # tab_label="$PWD:h:t/$PWD:t"
+  echo -ne "\e]2;${tab_label}\a" # set window title to full string
+  echo -ne "\e]1;${tab_label: -24}\a" # set tab title to rightmost 24 characters
+}
 
 # Python pip
 # DEPRECATION: --download-cache has been deprecated and will be removed in the
