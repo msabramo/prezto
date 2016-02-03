@@ -167,6 +167,9 @@ pipun() {
 alias psd='pserve development.ini'
 alias psdl='pserve development_local.ini'
 alias py='python'
+pyclean() {
+  find . \( -name '*.pyc' -or -name '__pycache__' \) -exec rm -rf {} +
+}
 pys() {
   python -c 'import setuptools; execfile("setup.py")' "$@"
 }
