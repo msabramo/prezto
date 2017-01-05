@@ -90,16 +90,23 @@ fi
 #   . ~/bin/MonkeyTest-openrc.sh
 # fi
 ###
-
 ### Toggle prompt
+#
+ZPREZTO_FANCY_PROMPT="steeef"
+ZPREZTO_PLAIN_PROMPT="redhat"
+
+autoload -Uz promptinit
+promptinit
+prompt ${ZPREZTO_FANCY_PROMPT}
+
 function current_prompt {
   prompt -c | awk 'NR == 2 { print $1 }'
 }
 function prt {
-  if [[ "$(current_prompt)" == "paradox" ]]; then
-    prompt redhat
-  elif [[ "$(current_prompt)" == "redhat" ]]; then
-    prompt paradox
+  if [[ "$(current_prompt)" == "${ZPREZTO_FANCY_PROMPT}" ]]; then
+    prompt ${ZPREZTO_PLAIN_PROMPT}
+  elif [[ "$(current_prompt)" == "${ZPREZTO_PLAIN_PROMPT}" ]]; then
+    prompt ${ZPREZTO_FANCY_PROMPT}
   fi
 }
 ###
