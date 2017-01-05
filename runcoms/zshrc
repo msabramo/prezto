@@ -46,9 +46,6 @@ supernova-list() {
 #     eval `docker-osx env`
 # fi
 
-source '/opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-source '/opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-
 # if boot2docker version > /dev/null; then
 #   $(boot2docker shellinit 2> /dev/null)
 # fi
