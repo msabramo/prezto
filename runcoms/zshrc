@@ -10,35 +10,19 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# export SMSTACK_NO_OPENSTACK_INVENTORY=1
-
-# Hashicorp Vault
-export VAULT_ADDR=https://consul01.corp.surveymonkey.com:8200
+[ -f ~/.profile ] && source ~/.profile
 
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 
 export ANSIBLE_NOCOWS=1
-
-export CHEESEPRISM=https://packages.corp.surveymonkey.com/index
-export DEVPI=https://devpi.corp.surveymonkey.com/wheels/osx
 
 alias avd='ansible-vault decrypt --vault-password-file=~/.vaultpw'
 alias ave='ansible-vault encrypt --vault-password-file=~/.vaultpw'
 alias aved='ansible-vault edit --vault-password-file=~/.vaultpw'
 alias avv='ansible-vault view --vault-password-file=~/.vaultpw'
 
-alias os-dev='source ~/openstack_rc_files/DEV-openrc.sh'
-alias os-monkeytest='source ~/openstack_rc_files/MonkeyTest-openrc.sh'
-
 ldap-lookup() {
   ldapsearch -H ldap://dc1-mp.corp.surveymonkey.com -x -b "OU=SurveyMonkey,DC=corp,DC=surveymonkey,DC=com" -D "CORP\marca" -W sAMAccountName=$1
-}
-
-supernova-list() {
-  os-dev
-  nova list | awk '{ printf "%-12s %s\n", "DEV", $0 }'; echo
-  os-monkeytest
-  nova list | awk '{ printf "%-12s %s\n", "MonkeyTest", $0 }'; echo
 }
 
 # Customize to your needs...
@@ -69,7 +53,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # PATH
 # export PATH=~/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.3/bin:/Library/Frameworks/Python.framework/Versions/3.2/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin
-export PATH=~/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/2.6/bin:/Library/Frameworks/Python.framework/Versions/2.5/bin:/Library/Frameworks/Python.framework/Versions/2.4/bin:/Library/Frameworks/Python.framework/Versions/3.4/bin:/Library/Frameworks/Python.framework/Versions/3.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin
+# export PATH=~/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/2.6/bin:/Library/Frameworks/Python.framework/Versions/2.5/bin:/Library/Frameworks/Python.framework/Versions/2.4/bin:/Library/Frameworks/Python.framework/Versions/3.4/bin:/Library/Frameworks/Python.framework/Versions/3.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin
 # CDPATH
 CDPATH=.:~/dev/adobe:~/dev/git-repos:~/dev/hg-repos
 
@@ -77,18 +61,6 @@ CDPATH=.:~/dev/adobe:~/dev/git-repos:~/dev/hg-repos
 export GOPATH=~/go
 export PATH=$GOPATH/bin:$PATH
 
-### OpenStack
-if [ -f ~/bin/DEV-openrc.sh ]; then
-  . ~/bin/DEV-openrc.sh
-fi
-
-if [ -f ~/openstack_rc_files/DEV-openrc.sh ]; then
-  . ~/openstack_rc_files/DEV-openrc.sh
-fi
-
-# if [ -f ~/bin/MonkeyTest-openrc.sh ]; then
-#   . ~/bin/MonkeyTest-openrc.sh
-# fi
 ###
 ### Toggle prompt
 #
@@ -126,9 +98,6 @@ precmd () {
 # future. Pip now automatically uses and configures its cache.
 # export PIP_DOWNLOAD_CACHE=~/.pip/download-cache
 
-# Make hub use HTTP instead of HTTPS
-export HUB_TEST_HOST=code.corp.surveymonkey.com:80
-
 # Python virtualenvwrapper
 export WORKON_HOME=~/python/virtualenvs
 if which virtualenvwrapper.sh > /dev/null; then
@@ -147,6 +116,8 @@ fi
 # export PYTHONSTARTUP=~/.pythonrc.py
 # alias python='PYTHONSTARTUP=~/.pythonrc.py python'
 
+alias dc='docker-compose'
+alias dm='docker-machine'
 alias gb='git branch -v'
 alias gb2m='git checkout master && git fetch --all && git rebase origin/master'
 alias gcom='git checkout master'
@@ -179,6 +150,7 @@ pys() {
 }
 alias rerc='source ~/.zshrc'
 alias sba='source bin/activate'
+alias vim='mvim -v'
 
 # Make Ctrl-Left and Ctrl-Right go backward/forward by words
 # Sorin won't accept PR for prezto
