@@ -50,6 +50,7 @@ Aliases
 
 ### Disabled File Globbing
 
+  - `bower`
   - `fc`
   - `find`
   - `ftp`
@@ -74,6 +75,7 @@ Aliases
   - `pu` changes the directory and pushes the old directory onto the stack
     (`pushd`).
   - `rm` removes files and directories interactively.
+  - `sa` search aliases for a word.
   - `type` displays all the attribute values of a shell parameter.
 
 ### Files and Directories
@@ -155,4 +157,3 @@ Authors
   - [Sorin Ionescu](https://github.com/sorin-ionescu)
 
 [1]: https://github.com/sorin-ionescu/prezto/issues
-

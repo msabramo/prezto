@@ -37,6 +37,13 @@ zstyle ':prezto:load' pmodule \
   'prompt'
 
 #
+# Autosuggestions
+#
+
+# Set the query found color.
+# zstyle ':prezto:module:autosuggestions:color' found ''
+
+#
 # Editor
 #
 
@@ -91,6 +98,13 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 zstyle ':prezto:module:prompt' theme 'paradox'
 
 #
+# Ruby
+#
+
+# Auto switch the Ruby version on directory change.
+# zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
+
+#
 # Screen
 #
 
@@ -117,6 +131,7 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 #   'main' \
 #   'brackets' \
 #   'pattern' \
+#   'line' \
 #   'cursor' \
 #   'root'
 #
@@ -139,6 +154,9 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 # Set the tab title format.
 # zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 
+# Set the terminal multiplexer title format.
+# zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
+
 #
 # Tmux
 #
@@ -149,3 +167,5 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 # Auto start a session when Zsh is launched in a SSH connection.
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
+# Integrate with iTerm2.
+# zstyle ':prezto:module:tmux:iterm' integrate 'yes'
